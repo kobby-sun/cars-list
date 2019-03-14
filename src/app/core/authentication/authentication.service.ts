@@ -21,8 +21,8 @@ const credentialsKey = 'credentials';
  */
 @Injectable()
 export class AuthenticationService {
-
   private _credentials: Credentials | null;
+  private _test: number = 0;
 
   constructor() {
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
@@ -72,6 +72,10 @@ export class AuthenticationService {
     return this._credentials;
   }
 
+  get test(): number | null {
+    return ++this._test;
+  }
+
   /**
    * Sets the user credentials.
    * The credentials may be persisted across sessions by setting the `remember` parameter to true.
@@ -90,5 +94,4 @@ export class AuthenticationService {
       localStorage.removeItem(credentialsKey);
     }
   }
-
 }

@@ -1,10 +1,11 @@
 <div class="container-fluid">
-  <div class="jumbotron text-center">
-    <h1>
-      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo"/>
-      <span translate>Hello world !</span>
-    </h1>
-    <app-loader [isLoading]="isLoading"></app-loader>
-    <q [hidden]="isLoading">{{quote}}</q>
+  <div *ngFor="let make of _.orderBy(_.keys(makes))">
+    <span>{{ make }}</span>
+    <div *ngFor="let model of _.orderBy(_.keys(makes[make].models))">
+      <span style="padding-left: 20px">{{ model }}</span>
+      <div *ngFor="let show of _.orderBy(makes[make].models[model].shows)">
+        <span style="padding-left: 40px">{{ show }}</span>
+      </div>
+    </div>
   </div>
 </div>

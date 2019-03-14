@@ -130,16 +130,16 @@ export class CarService {
   constructor(private httpClient: HttpClient) {}
 
   getCars(): Observable<any> {
-    return new Observable(observer => {
-      observer.next(carsJson);
-      observer.complete();
-    });
-    // return this.httpClient
-    //   .cache()
-    //   .get(routes.cars())
-    //   .pipe(
-    //     map((body: any) => body),
-    //     catchError(() => of('Error, could not load cars :-('))
-    //   );
+    // return new Observable(observer => {
+    //   observer.next(carsJson);
+    //   observer.complete();
+    // });
+    return this.httpClient
+      .cache()
+      .get(routes.cars())
+      .pipe(
+        map((body: any) => body),
+        catchError(() => of(carsJson))
+      );
   }
 }
